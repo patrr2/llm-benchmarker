@@ -8,8 +8,10 @@ import { IState } from '../../webserver/sharedTypes'
 function App() {
   const [stateFromApi, setStateFromApi] = useState<IState | null>(null)
 
+  const apiUrl = 'https://llm-bench.adaptable.app/api/state' // note: hardcoded for now before serverside rendering or next.js
+
   useEffect(() => {
-    fetch('http://localhost:3000/api/state')
+    fetch(apiUrl)
       .then(async (res) => {
         return res.json()
       })
