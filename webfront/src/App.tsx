@@ -34,7 +34,7 @@ function App() {
         }
       </div>
       <p className="text-gray-100 mt-5">
-      this project on  <a href="https://github.com/pattr2">github</a>
+      this project on  <a href="https://github.com/patrr2/llm-benchmarker/tree/main">github</a>
       </p>
     </>
   )
