@@ -1,1 +1,0 @@
-export const postgresConnectionString = 'postgres://foo:bar@localhost/test'

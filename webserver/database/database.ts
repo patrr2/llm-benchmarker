@@ -1,5 +1,6 @@
 import { Sequelize, DataTypes } from 'sequelize'
-import { postgresConnectionString } from '../config'
+
+const postgresConnectionString = process.env.POSTGRES_CONN_STRING || 'postgres://postgres:postgres@localhost:5432/postgres'
 
 export const sequelize = new Sequelize(postgresConnectionString);
 
