@@ -25,7 +25,7 @@ function App() {
         {
           stateFromApi?.slidingDifficultyTasksResults?.map((task) => (
             <SlidingDifficultyQuestionCard task={task} />
-          )) ?? 'Loading...'
+          )) ?? 'Loading... (can take up to 10 seconds)'
         }
         {
           stateFromApi?.simpleQAResults?.map((task) => (
