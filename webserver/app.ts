@@ -52,7 +52,6 @@ app.use(cors())
 
 app.get('/api/state', async (req, res) => {
     console.log('received request for state')
-    await fetchLatestState()
     res.send(state)
 })
 
@@ -62,3 +61,8 @@ app.get('/api/test_state', async (req, res) => {
         simpleQAResults: [simpleQATaskData]
     })
 })
+
+;(async () => {
+    await fetchLatestState()
+    console.log('succesfully fetched latest state')
+})()
