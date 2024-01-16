@@ -48,10 +48,13 @@ const fetchLatestState = async () => {
     state.simpleQAResults = tempState.simpleQAResults
 }
 
+const fetching = fetchLatestState()
+
 app.use(cors())
 
 app.get('/api/state', async (req, res) => {
     console.log('received request for state')
+    await fetching;
     res.send(state)
 })
 
@@ -63,6 +66,6 @@ app.get('/api/test_state', async (req, res) => {
 })
 
 ;(async () => {
-    await fetchLatestState()
+    await fetching;
     console.log('succesfully fetched latest state')
 })()
