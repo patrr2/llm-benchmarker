@@ -28,6 +28,7 @@ export default (props : { task:  SlidingDifficultyTaskScoresObject }) => {
                 <b>Correct Answer ({topDifficultyPromptExample.llm}): </b> {TopDifficultyPromptAnswerJsx} <br />
             </div>
             <div className="my-2 flex gap-2">
+                <b className="leading-8">Scores:</b>
                 {
                     sortedEvaluations.map(([key, val]) => <ScoreBadge llmName={key} score={val.highestDifficultyPassed} />)
                 }

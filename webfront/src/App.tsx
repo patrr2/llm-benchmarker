@@ -7,15 +7,19 @@ import { IState } from '../../webserver/sharedTypes'
 
 function App() {
   const [stateFromApi, setStateFromApi] = useState<IState | null>(null)
+  const [errorMessage, setErrorMessage] = useState<string | null>(null)
 
   const apiUrl = 'https://llm-bench.adaptable.app/api/state' // note: hardcoded for now before serverside rendering or next.js
-
+  
   useEffect(() => {
     fetch(apiUrl)
       .then(async (res) => {
         return res.json()
       })
       .then((data) => setStateFromApi(data))
+      .catch(e => {
+        setErrorMessage(e.message)
+      })
   }, [])
 
   return (
@@ -23,7 +27,7 @@ function App() {
       <h1 className="pb-10">LLM Benchmarker</h1>
       <div className="flex flex-col gap-5">
         {
-          stateFromApi?.slidingDifficultyTasksResults?.map((task) => (
+          errorMessage ?? stateFromApi?.slidingDifficultyTasksResults?.map((task) => (
             <SlidingDifficultyQuestionCard task={task} />
           )) ?? 'Loading... (can take up to 10 seconds)'
         }
