@@ -7,7 +7,6 @@ import { QuestionAndEvaluation } from './Task'
 import models from './LLMs/openai-models'
 import LLM from './LLM'
 import { SlidingDifficultyTask } from './SlidingDifficultyTask'
-import { slidingDifficultyTaskData, simpleQATaskData } from './testData'
 import { IState } from './sharedTypes'
 
 export const app = express()
@@ -35,11 +34,11 @@ const fetchLatestState = async () => {
 
     for (const task of tasks) {
         if (task instanceof SlidingDifficultyTask) {
-            const results = await task.getScoresObject()
+            const results = await task.getResultsObject()
             tempState.slidingDifficultyTasksResults.push(results)
         }
         else if (task instanceof QuestionAndEvaluation) {
-            const results = await  task.getScoresObject()
+            const results = await  task.getResultsObject()
             tempState.simpleQAResults.push(results)
         }
     }
@@ -56,13 +55,6 @@ app.get('/api/state', async (req, res) => {
     console.log('received request for state')
     await fetching;
     res.send(state)
-})
-
-app.get('/api/test_state', async (req, res) => {
-    res.jsonp({
-        slidingDifficultyTasksResults: [slidingDifficultyTaskData],
-        simpleQAResults: [simpleQATaskData]
-    })
 })
 
 ;(async () => {

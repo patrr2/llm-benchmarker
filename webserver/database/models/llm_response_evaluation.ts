@@ -2,7 +2,7 @@ import { DataTypes } from 'sequelize'
 import { sequelize } from '../database'
 import { Sequelize, Model, CreationOptional, InferAttributes, InferCreationAttributes } from 'sequelize';
 
-export interface LLMSingleResultDBModel extends Model<InferAttributes<LLMSingleResultDBModel>, InferCreationAttributes<LLMSingleResultDBModel>> {
+export interface LLMSingleResponseEvaluationDb extends Model<InferAttributes<LLMSingleResponseEvaluationDb>, InferCreationAttributes<LLMSingleResponseEvaluationDb>> {
     // Some fields are optional when calling UserModel.create() or UserModel.build()
     id: CreationOptional<number>;
     timestamp: CreationOptional<Date>;
@@ -17,7 +17,7 @@ export interface LLMSingleResultDBModel extends Model<InferAttributes<LLMSingleR
     evaluation_message: CreationOptional<string | null>;
 }
 
-export const LLMSingleResultDB = sequelize.define<LLMSingleResultDBModel>('llm_response_evaluation', {
+export const LLMSingleResponseEvaluationModel = sequelize.define<LLMSingleResponseEvaluationDb>('llm_response_evaluation', {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -66,4 +66,4 @@ export const LLMSingleResultDB = sequelize.define<LLMSingleResultDBModel>('llm_r
 }, {})
 
 
-export default LLMSingleResultDB
+export default LLMSingleResponseEvaluationModel

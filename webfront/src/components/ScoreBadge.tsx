@@ -1,4 +1,4 @@
-import { LLMTaskEvaluation } from "../../../webserver/sharedTypes";
+import { LLMTaskResult } from "../../../webserver/sharedTypes";
 
 export const sortByDifficulty = (a: number | null, b: number | null) => {
     if (a === null && b === null) {
@@ -38,7 +38,7 @@ export const sortByPassed = (a: boolean | null, b: boolean | null) => {
     return 1;
 }
 
-export const sortByDifficultyAndPassed = (list : ([string, LLMTaskEvaluation])[]) => {
+export const sortByDifficultyAndPassed = (list : ([string, LLMTaskResult])[]) => {
     const sort1 = list.sort((a, b) => {
         return -sortByDifficulty(a[1].highestDifficultyPassed, b[1].highestDifficultyPassed)
     })

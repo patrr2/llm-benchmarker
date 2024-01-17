@@ -1,6 +1,6 @@
 import { groupBy, mapObjectValues } from "./utils/common"
-import { LLMSingleResultDBModel } from "./database/models/llm_response_evaluation"
-import { LLMSingleResult, LLMTaskEvaluation } from "./sharedTypes"
+import { LLMSingleResponseEvaluationDb } from "./database/models/llm_response_evaluation"
+import { LLMSingleResponseEvaluation, LLMTaskResult } from "./sharedTypes"
 
 export interface LLMParams {
     name : string
@@ -19,7 +19,7 @@ export default class LLM {
     }
 }
 
-const LLMSingleResultDBModelToLLMSingleResult = (evaluation : LLMSingleResultDBModel) : LLMSingleResult => {
+const llmSingleResponseEvaluationDbToJson = (evaluation : LLMSingleResponseEvaluationDb) : LLMSingleResponseEvaluation => {
     return {
         llm: evaluation.llm_name,
         promptText: evaluation.prompt_text,
@@ -30,16 +30,19 @@ const LLMSingleResultDBModelToLLMSingleResult = (evaluation : LLMSingleResultDBM
     }
 }
 
-export const llmResultsToLlmTaskEvaluation = (llmResults : LLMSingleResultDBModel[], passesRequired : number = 1) : LLMTaskEvaluation => {
-    const passedResults = llmResults.filter(x => x.is_correct)
-    const evaluationsPerDifficulty = groupBy(passedResults, x => x.difficulty?.toString() ?? 'null')
-    const evaluationsPerDifficultyPassing = mapObjectValues(evaluationsPerDifficulty, x => x.length >= passesRequired)
+export const llmEvaluationsToLlmTaskResult = (llmEvaluations : LLMSingleResponseEvaluationDb[], passesRequired : number = 1) : LLMTaskResult => {
+    const passedEvaluations = llmEvaluations.filter(x => x.is_correct)
+    const evaluationsPerDifficulty = groupBy(passedEvaluations, x => x.difficulty?.toString() ?? 'null')
 
     let passedAny = false
     let highestPassingScore = null
 
-    for (let [score, passed] of Object.entries(evaluationsPerDifficultyPassing)) {
-        if (passed) passedAny = true; else continue
+    for (let [score, correctAnswers] of Object.entries(evaluationsPerDifficulty)) {
+        if (correctAnswers.length < passesRequired) {
+            continue
+        }
+
+        passedAny = true
 
         // rank difficulty if not null (null is for questions without difficulty rating)
         if (score !== 'null') {
@@ -50,8 +53,8 @@ export const llmResultsToLlmTaskEvaluation = (llmResults : LLMSingleResultDBMode
         }
     }
 
-    const returnObj : LLMTaskEvaluation = {
-        list: llmResults.map(x => LLMSingleResultDBModelToLLMSingleResult(x)),
+    const returnObj : LLMTaskResult = {
+        evaluations: llmEvaluations.map(x => llmSingleResponseEvaluationDbToJson(x)),
         highestDifficultyPassed: highestPassingScore,
         passedAny: passedAny
     }

@@ -1,8 +1,8 @@
-import { QuestionAndEvaluationScoresObject } from '../../../webserver/sharedTypes'
+import { QuestionAndEvaluationResultsObject } from '../../../webserver/sharedTypes'
 import { ScoreBadge, sortByDifficultyAndPassed } from './ScoreBadge'
 
 
-export default (props : { task:  QuestionAndEvaluationScoresObject }) => {
+export default (props : { task:  QuestionAndEvaluationResultsObject }) => {
     const { task } = props
 
     return (
@@ -15,7 +15,7 @@ export default (props : { task:  QuestionAndEvaluationScoresObject }) => {
             <div className="my-2 flex gap-2 ml-1">
                 <b className="leading-8">Scores:</b>
                 {
-                    sortByDifficultyAndPassed(Object.entries(task.evaluations)).map(([key, val]) => <ScoreBadge llmName={key} score={val.passedAny} />)
+                    sortByDifficultyAndPassed(Object.entries(task.results)).map(([key, val]) => <ScoreBadge llmName={key} score={val.passedAny} />)
                 }
             </div>
 

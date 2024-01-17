@@ -1,5 +1,5 @@
 
-export interface LLMSingleResult {
+export interface LLMSingleResponseEvaluation {
     llm: string
     promptText: string
     responseText: string
@@ -8,30 +8,26 @@ export interface LLMSingleResult {
     difficulty: number | null
 }
 
-export interface LLMTaskEvaluation {
-    list: LLMSingleResult[]
+export interface LLMTaskResult {
+    evaluations: LLMSingleResponseEvaluation[]
     highestDifficultyPassed: number | null
     passedAny: boolean
 }
 
-export interface LLMTaskEvaluations {
-    [key: string]: LLMTaskEvaluation[]
-}
-
-export interface QuestionAndEvaluationScoresObject {
+export interface QuestionAndEvaluationResultsObject {
     taskName: string
     promptText: string
     humanReadableSolution: string
-    evaluations: { [key: string]: LLMTaskEvaluation} 
+    results: { [key: string]: LLMTaskResult} 
 }
 
-export interface SlidingDifficultyTaskScoresObject {
+export interface SlidingDifficultyTaskResultsObject {
     taskName: string
     scoreInterpretation: string
-    evaluations: { [key: string]: LLMTaskEvaluation} 
+    results: { [key: string]: LLMTaskResult} 
 }
 
 export interface IState {
-    slidingDifficultyTasksResults: SlidingDifficultyTaskScoresObject[]
-    simpleQAResults: QuestionAndEvaluationScoresObject[]
+    slidingDifficultyTasksResults: SlidingDifficultyTaskResultsObject[]
+    simpleQAResults: QuestionAndEvaluationResultsObject[]
 }
