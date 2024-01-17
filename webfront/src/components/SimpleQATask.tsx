@@ -12,7 +12,7 @@ export default (props : { task:  QuestionAndEvaluationScoresObject }) => {
                 <b>Prompt: </b> {task.promptText} <br />
                 <b>Solution: </b> {task.humanReadableSolution} <br />
             </div>
-            <div className="my-2 flex gap-2">
+            <div className="my-2 flex gap-2 ml-1">
                 <b className="leading-8">Scores:</b>
                 {
                     sortByDifficultyAndPassed(Object.entries(task.evaluations)).map(([key, val]) => <ScoreBadge llmName={key} score={val.passedAny} />)
