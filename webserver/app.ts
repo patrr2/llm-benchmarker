@@ -8,13 +8,15 @@ import models from './LLMs/openai-models'
 import LLM from './LLM'
 import { SlidingDifficultyTask } from './SlidingDifficultyTask'
 import { IState } from './sharedTypes'
+import WordCount from './Tasks/WordCount'
 
 export const app = express()
 
 export const tasks : (QuestionAndEvaluation | SlidingDifficultyTask)[] = [
     NumberSum,
     PreviousAppleEating,
-    SDToLA
+    SDToLA,
+    WordCount
 ]
 
 export const llms : LLM[] = [
