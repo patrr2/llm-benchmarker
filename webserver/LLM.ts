@@ -15,7 +15,12 @@ export default class LLM {
     }
 
     async getResponse(prompt : string) : Promise<string> {
-        return await this.p.getResponse(prompt)
+        try {
+            return await this.p.getResponse(prompt)
+        } catch(e) {
+            console.error(e)
+            return '[got error response]'
+        }
     }
 }
 
