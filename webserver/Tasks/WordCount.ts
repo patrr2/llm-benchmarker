@@ -6,7 +6,7 @@ import { toWords } from 'number-to-words'
 export default new SlidingDifficultyTask({
     name: 'WordCount',
     humanReadableSolution: "Number of words 'apple' in the string",
-    difficultyInterpretation: "The correct number of apples in the string. 5 Passes required",
+    difficultyInterpretation: "The correct number of apples in the string. 7 Passes required",
     minDifficulty: 2,
     maxDifficulty: 300,
     passesRequiredPerDifficulty: 7,
