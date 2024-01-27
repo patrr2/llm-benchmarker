@@ -5,5 +5,5 @@ export default new QuestionAndEvaluation({
     evaluateAnswer: (answer: string) => {
         return answer.includes("5 hours") || answer.includes("five hours") || answer.includes("5 h") || answer.includes("5h")
     },
-    humanReadableSolution: "A Bloc",
+    humanReadableSolution: "5 hours",
 })
