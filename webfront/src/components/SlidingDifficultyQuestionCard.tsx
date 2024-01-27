@@ -27,7 +27,7 @@ export default (props : { task:  SlidingDifficultyTaskResultsObject }) => {
                 <b>Top Prompt: </b> {topDifficultyPromptExample.promptText} <br />
                 <b>Correct Answer: </b> {TopDifficultyPromptAnswerJsx} <br />
             </div>
-            <div className="my-2 flex gap-2 ml-1">
+            <div className="my-2 flex gap-2 ml-1 overflow-auto">
                 <b className="leading-8">Scores:</b>
                 {
                     sortedResults.map(([key, val]) => <ScoreBadge llmName={key} score={val.highestDifficultyPassed} />)
