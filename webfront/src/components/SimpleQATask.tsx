@@ -15,7 +15,7 @@ export default (props : { task:  QuestionAndEvaluationResultsObject }) => {
             <div className="my-2 flex gap-2 ml-1">
                 <b className="leading-8">Scores:</b>
                 {
-                    sortByDifficultyAndPassed(Object.entries(task.results)).map(([key, val]) => <ScoreBadge llmName={key} score={val.passedAny} />)
+                    sortByDifficultyAndPassed(Object.entries(task.results)).map(([key, val]) => <ScoreBadge llmName={key} score={val.passedAny} details={val.evaluations[0].responseText} />)
                 }
             </div>
 

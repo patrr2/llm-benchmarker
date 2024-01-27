@@ -3,6 +3,7 @@ import cors from 'cors'
 import NumberSum from './Tasks/NumberSum'
 import PreviousAppleEating from './Tasks/PreviousAppleEating'
 import SDToLA from './Tasks/SDToLA'
+import Otaniemi from './Tasks/Otaniemi'
 import { QuestionAndEvaluation } from './Task'
 import models from './LLMs/openai-models'
 import { models as replicateModels } from './LLMs/replicate'
@@ -10,14 +11,16 @@ import LLM from './LLM'
 import { SlidingDifficultyTask } from './SlidingDifficultyTask'
 import { IState } from './sharedTypes'
 import WordCount from './Tasks/WordCount'
-
+import LogicalPuzzle from './Tasks/LogicalPuzzle'
 export const app = express()
 
 export const tasks : (QuestionAndEvaluation | SlidingDifficultyTask)[] = [
     NumberSum,
     PreviousAppleEating,
     SDToLA,
-    WordCount
+    WordCount,
+    Otaniemi,
+    LogicalPuzzle
 ]
 
 export const llms : LLM[] = [

@@ -14,7 +14,12 @@ export class ReplicateModel extends LLM {
         super({
             name: modelName,
             getResponse: async (text : string) => {
-                const resp = await replicate.run(modelName, { input: { prompt: this.generatePrompt(text) } })
+                const resp = await replicate.run(
+                    modelName,
+                    {
+                        input: { prompt: this.generatePrompt(text), max_new_tokens: 1024 }
+                    }
+                )
                 if (Array.isArray(resp)) {
                     return resp.join('')
                 }
