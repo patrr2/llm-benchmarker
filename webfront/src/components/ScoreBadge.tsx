@@ -50,7 +50,7 @@ export const sortByDifficultyAndPassed = (list : ([string, LLMTaskResult])[]) =>
     return sort2
 }
 
-export const ScoreBadge = (props: { details?: string, llmName: string; score: number | boolean | null; }) => {
+export const ScoreBadge = (props: { details?: string | null, llmName: string; score: number | boolean | null; }) => {
     let colorClass = 'badge-secondary';
     let scoreString = ''
 
@@ -65,7 +65,7 @@ export const ScoreBadge = (props: { details?: string, llmName: string; score: nu
     }
 
     return (
-        <div className="inline-block bg-gray-900 py-1 p-2 rounded-lg" title={props.details}>
+        <div className="inline-block bg-gray-900 py-1 p-2 rounded-lg" title={props.details ?? "[no details given]"}>
             <b>{props.llmName}</b>
             <div className={"badge badge-outline ml-2 " + colorClass}>
                 {scoreString}
