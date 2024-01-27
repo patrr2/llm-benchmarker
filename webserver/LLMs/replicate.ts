@@ -32,5 +32,7 @@ export class ReplicateModel extends LLM {
 
 export const models = [
     new ReplicateModel("meta/llama-2-70b-chat"),
-    new ReplicateModel("meta/llama-2-7b-chat")
+    new ReplicateModel("meta/llama-2-7b-chat"),
+    new ReplicateModel("mistralai/mixtral-8x7b-instruct-v0.1"),
+    new ReplicateModel("mistralai/mistral-7b-instruct-v0.2")
 ]
