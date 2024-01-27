@@ -16,7 +16,7 @@ export default new SlidingDifficultyTask({
         let sumString = String(firstNumber)
         let sum = firstNumber
 
-        for (let i = 0; i < difficulty; i++) {
+        for (let i = 1; i < difficulty; i++) {
             const number = rand()
             sumString += " + " + number
             sum += number

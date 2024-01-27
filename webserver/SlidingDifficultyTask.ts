@@ -73,7 +73,7 @@ export class SlidingDifficultyTask {
         // save all results to database
         await Promise.all(pendingEvaluations.map(e => e.save()))
 
-        return minDifficulty - 1
+        return minDifficulty
     }
 
     async getLlmsParticipated() {

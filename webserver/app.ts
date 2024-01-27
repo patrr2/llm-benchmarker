@@ -5,6 +5,7 @@ import PreviousAppleEating from './Tasks/PreviousAppleEating'
 import SDToLA from './Tasks/SDToLA'
 import { QuestionAndEvaluation } from './Task'
 import models from './LLMs/openai-models'
+import { models as replicateModels } from './LLMs/replicate'
 import LLM from './LLM'
 import { SlidingDifficultyTask } from './SlidingDifficultyTask'
 import { IState } from './sharedTypes'
@@ -20,7 +21,8 @@ export const tasks : (QuestionAndEvaluation | SlidingDifficultyTask)[] = [
 ]
 
 export const llms : LLM[] = [
-    ...models
+    ...models,
+    ...replicateModels
 ]
 
 const state : IState = {
