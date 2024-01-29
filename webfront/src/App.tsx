@@ -29,7 +29,7 @@ function App() {
         {
           errorMessage ?? stateFromApi?.slidingDifficultyTasksResults?.map((task) => (
             <SlidingDifficultyQuestionCard task={task} />
-          )) ?? 'Loading... (takes either 1 second, or 15 second (for the server to boot)'
+          )) ?? 'Loading... (takes either 1 second, or 15 second (for the server to boot))'
         }
         {
           stateFromApi?.simpleQAResults?.map((task) => (
